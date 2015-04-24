@@ -7,6 +7,10 @@ var urlsToCache = [
   '/test/'
 ];
 
+var urlToPrefetch = [
+	'https://housing.com/api/v1/cities'
+]
+
 self.addEventListener('activate', function(event) {
 
   var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
@@ -29,10 +33,16 @@ self.addEventListener('install', function(event) {
         caches.open(CACHE_NAME)
           .then(function(cache) {
             console.log('Opened cache');
+			cache.addAll(urlsToPrefetch.map(function(urlToPrefetch) {
+			  return new Request(urlToPrefetch, { mode: 'no-cors' });
+			})).then(function() {
+			  console.log('All resources have been fetched and cached.');
+			});
             return cache.addAll(urlsToCache);
           })
       );
 });
+
 
 self.addEventListener('fetch', function(event) {
   console.log('started event', event);
