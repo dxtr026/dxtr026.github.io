@@ -10,8 +10,8 @@ var urlsToCache = [
 self.addEventListener('activate', function(event) {
 
   var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
-
-  event.waitUntil(
+  console.log('worker activatet')
+  /* event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
@@ -21,7 +21,7 @@ self.addEventListener('activate', function(event) {
         })
       );
     })
-  );
+  );*/
 });
 
 self.addEventListener('install', function(event) {
