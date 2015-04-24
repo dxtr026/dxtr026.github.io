@@ -7,7 +7,7 @@ var urlsToCache = [
   '/test/'
 ];
 
-var urlToPrefetch = [
+var urlsToPrefetch = [
 	'https://housing.com/api/v1/cities'
 ]
 
