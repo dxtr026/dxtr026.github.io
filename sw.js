@@ -26,6 +26,7 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('install', function(event) {
     # // Perform install steps
+    debugger;
     event.waitUntil(
         caches.open(CACHE_NAME)
           .then(function(cache) {
