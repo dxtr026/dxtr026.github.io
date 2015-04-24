@@ -22,10 +22,10 @@
 		<script>
 			$.ajax({
 			  url: 'https://housing.com/api/v1/cities',
-			  type: 'get'
+			  type: 'get',
 			  success: function(data){
 			  	console.log('fetched', data.result[0].url_name)
-			  },
+			  }
 			});
 		</script>
 	</body>
