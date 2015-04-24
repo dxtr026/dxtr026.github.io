@@ -43,7 +43,6 @@ self.addEventListener('fetch', function(event) {
           return response;
         }
 
-        lone the response
         var fetchRequest = event.request.clone();
 
         return fetch(fetchRequest).then(
