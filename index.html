@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
-		<script type="application/ld+json">
-			{ "@context" : "http://schema.org",
-			"@type" : "Organization",
-			"url" : "https://housing.com/",
-			"logo" : "https://housing.com/mini_logo.png",
-			"contactPoint" : [
-			{ "@type" : "ContactPoint",
-			"telephone" : "+91-3-333-333-333",
-			"contactType" : "customer service"
-			} ] }
-		</script>			
+	<script>
+		if ('serviceWorker' in navigator) {
+		  navigator.serviceWorker.register('/sw.js').then(function(registration) {
+		    // Registration was successful
+		    console.log('ServiceWorker registration successful with scope: ',    registration.scope);
+		  }).catch(function(err) {
+		    // registration failed :(
+		    console.log('ServiceWorker registration failed: ', err);
+		  });
+		}
+	</script>>
 	</head>
 
 	<body>
-
+		<button class="js-push-button" disabled> 
+		  Enable Push Messages  
+		</button>
 	</body>
 </html>
