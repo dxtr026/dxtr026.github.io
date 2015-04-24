@@ -15,17 +15,15 @@ self.addEventListener('activate', function(event) {
 
   var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
   console.log('worker activatet')
-  /* event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.map(function(cacheName) {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );*/
+  caches.open('cities-cache')
+  	.then(function(cache){
+			cache.addAll(urlsToPrefetch.map(function(urlToPrefetch) {
+			  return new Request(urlToPrefetch, { mode: 'no-cors' });
+			})).then(function() {
+			  console.log('All resources have been fetched and cached.');
+			});
+  		}
+  	);
 });
 
 self.addEventListener('install', function(event) {
@@ -33,11 +31,6 @@ self.addEventListener('install', function(event) {
         caches.open(CACHE_NAME)
           .then(function(cache) {
             console.log('Opened cache');
-			cache.addAll(urlsToPrefetch.map(function(urlToPrefetch) {
-			  return new Request(urlToPrefetch, { mode: 'no-cors' });
-			})).then(function() {
-			  console.log('All resources have been fetched and cached.');
-			});
             return cache.addAll(urlsToCache);
           })
       );
