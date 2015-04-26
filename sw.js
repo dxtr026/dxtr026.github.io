@@ -4,8 +4,7 @@ var CACHE_NAME = 'my-site-cache-v1';
 
 var urlsToCache = [
   '/',
-  '/test/',
-  '/new/'
+  '/test/'
 ];
 
 var urlsToPrefetch = [
@@ -13,18 +12,7 @@ var urlsToPrefetch = [
 ]
 
 self.addEventListener('activate', function(event) {
-
-  var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
-  console.log('worker activatet')
-  caches.open('cities-cache')
-  	.then(function(cache){
-			cache.addAll(urlsToPrefetch.map(function(urlToPrefetch) {
-			  return new Request(urlToPrefetch, { mode: 'no-cors' });
-			})).then(function() {
-			  console.log('All resources have been fetched and cached.');
-			});
-  		}
-  	);
+  console.log('worker activatet');
 });
 
 self.addEventListener('install', function(event) {
@@ -40,6 +28,7 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
   console.log('started event', event);
+  
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
