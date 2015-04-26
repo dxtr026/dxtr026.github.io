@@ -17,7 +17,7 @@ self.addEventListener('activate', function(event) {
       caches.keys().then(function(cacheNames) {
         return Promise.all(
           cacheNames.map(function(cacheName) {
-            if (cacheName == 'my-site-cache-v1') {
+            if (['my-site-cache-v1','my-site-cache-v2'].indexOf(cacheName)!=-1) {
               return caches.delete(cacheName);
             }
           })
