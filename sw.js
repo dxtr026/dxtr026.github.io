@@ -4,7 +4,7 @@ var CACHE_NAME = 'my-site-cache-v1';
 
 var urlsToCache = [
   '/',
-  '/test/'
+  '/test/',
   '/new/'
 ];
 
