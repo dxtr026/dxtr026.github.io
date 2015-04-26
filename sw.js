@@ -1,6 +1,6 @@
 importScripts('serviceworker-cache-polyfill.js');
 
-var CACHE_NAME = 'my-site-cache-v1';
+var CACHE_NAME = 'my-site-cache-v2';
 
 var urlsToCache = [
   '/',
@@ -13,6 +13,18 @@ var urlsToPrefetch = [
 
 self.addEventListener('activate', function(event) {
   console.log('worker activatet');
+  event.waitUntil(
+      caches.keys().then(function(cacheNames) {
+        return Promise.all(
+          cacheNames.map(function(cacheName) {
+            if (cacheName == 'my-site-cache-v1') {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      })
+    );
+
 });
 
 self.addEventListener('install', function(event) {
